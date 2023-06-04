@@ -1,0 +1,178 @@
+$main-color: rgb(3, 13, 63);
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+body {
+  width: 100%;
+  background-color: #5261988c;
+}
+button {
+  cursor: pointer;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  background-color: $main-color;
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+#emptyMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px dashed #fff;
+  width: 700px;
+  height: 150px;
+  font-size: 35px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: rgb(73, 73, 73);
+}
+main {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .todo-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 10px;
+    margin: 30px;
+    width: 700px;
+    height: 100%;
+    background-color: $main-color;
+    form {
+      display: flex;
+      align-content: center;
+      flex-direction: row;
+      #input {
+        outline: none;
+        width: 400px;
+        height: 30px;
+        margin-right: 1rem;
+        padding-left: 15px;
+        border-radius: 15px;
+        border: none;
+        color: $main-color;
+        font-size: 18px;
+        font-family: monospace;
+      }
+      #addBtn {
+        width: 60px;
+        height: 30px;
+        border-radius: 15px;
+        color: #fff;
+        background-color: $main-color;
+        border: 2px solid #fff;
+        font-size: 18px;
+        font-family: monospace;
+      }
+    }
+  }
+
+  .tasks {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__list {
+      li {
+        list-style-type: none;
+        padding: 5px 10px 5px 20px;
+      }
+      .task {
+        width: 700px;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+        font-size: 20px;
+        font-family: monospace;
+        background-color: $main-color;
+        margin: 1rem 0;
+
+        &__buttons {
+          width: 22%;
+          display: flex;
+          justify-content: space-between;
+          .edit-btn {
+            color: #fff;
+            background-color: rgb(0, 120, 171);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            width: 60px;
+            height: 25px;
+          }
+          .delete-btn {
+            color: #fff;
+            background-color: rgb(109, 3, 3);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            width: 60px;
+            height: 25px;
+          }
+        }
+        .edit-input {
+          outline: none;
+          width: 200px;
+          height: 25px;
+          margin-right: 10px;
+          padding-left: 15px;
+          border-radius: 5px;
+          border: none;
+          color: $main-color;
+          font-size: 18px;
+          font-family: monospace;
+        }
+        .save-btn {
+          color: #fff;
+          background-color: rgb(0, 171, 11);
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          font-size: 15px;
+          border: none;
+          border-radius: 5px;
+          width: 60px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
