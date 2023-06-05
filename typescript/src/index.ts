@@ -3,7 +3,7 @@ let addBtn: any = document.getElementById("addBtn");
 let emptyMessage: any = document.getElementById("emptyMessage");
 let tasksSection = document.getElementById("tasks");
 let tasksList: any = document.getElementById("tasksList");
-let tasks: any[] = [];
+let tasks: Array<{ id: number; name: string }> = [];
 
 addBtn.addEventListener("click", (e: any) => {
   e.preventDefault();
@@ -16,7 +16,7 @@ function addTodo() {
     return;
   } else {
     emptyMessage.style.display = "none";
-    let data = {
+    let data: { id: number; name: string } = {
       id: tasks.length,
       name: input.value.toUpperCase().trim(),
     };
