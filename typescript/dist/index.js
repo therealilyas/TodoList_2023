@@ -10,6 +10,7 @@ addBtn.addEventListener("click", (e) => {
     addTodo();
     if (e.keyCode == 15)
         addTodo();
+    console.log("Task added!", tasks);
 });
 function addTodo() {
     if (input.value == "") {
@@ -64,13 +65,12 @@ function loadTasks(tasks) {
         deleteBtn.innerText = "Delete";
         deleteBtn.addEventListener("click", () => {
             todoLI.style.animation = "fadeOut 2s";
-            delete tasks[task.id];
-            tasks = tasks.filter((task) => {
-                if (task !== undefined) {
-                    return task;
+            tasks = tasks.filter((item) => {
+                if (task.id !== item.id) {
+                    return item;
                 }
             });
-            console.log(tasks);
+            console.log("Task deleted!", tasks);
             setTimeout(() => {
                 if (tasks.length == 0) {
                     todoLI.remove();

@@ -1,14 +1,20 @@
-let input: any = document.getElementById("input");
-let addBtn: any = document.getElementById("addBtn");
-let emptyMessage: any = document.getElementById("emptyMessage");
-let tasksSection = document.getElementById("tasks");
-let tasksList: any = document.getElementById("tasksList");
-let tasks: Array<{ id: number; name: string }> = [];
+let input = <HTMLInputElement>document.getElementById("input");
+let addBtn = <HTMLElement>document.getElementById("addBtn");
+let emptyMessage = <HTMLElement>document.getElementById("emptyMessage");
+let tasksSection = <HTMLElement>document.getElementById("tasks");
+let tasksList = <HTMLElement>document.getElementById("tasksList");
+interface Tasks {
+  id: number;
+  name: string;
+}
+
+let tasks: Tasks[] = [];
 
 addBtn.addEventListener("click", (e: any) => {
   e.preventDefault();
   addTodo();
   if (e.keyCode == 15) addTodo();
+  console.log("Task added!", tasks);
 });
 
 function addTodo() {
@@ -16,7 +22,7 @@ function addTodo() {
     return;
   } else {
     emptyMessage.style.display = "none";
-    let data: { id: number; name: string } = {
+    let data: Tasks = {
       id: tasks.length,
       name: input.value.toUpperCase().trim(),
     };
@@ -26,7 +32,7 @@ function addTodo() {
   }
 }
 
-function loadTasks(tasks: any) {
+function loadTasks(tasks: Tasks[]) {
   tasksList.innerHTML = " ";
   tasks.forEach((task: any) => {
     const todoLI = document.createElement("li");
@@ -70,14 +76,14 @@ function loadTasks(tasks: any) {
     deleteBtn.innerText = "Delete";
     deleteBtn.addEventListener("click", () => {
       todoLI.style.animation = "fadeOut 2s";
-      delete tasks[task.id];
-      tasks = tasks.filter((task: any) => {
-        if (task !== undefined) {
-          return task;
+
+      tasks = tasks.filter((item: { id: number; name: string }) => {
+        if (task.id !== item.id) {
+          return item;
         }
       });
 
-      console.log(tasks);
+      console.log("Task deleted!", tasks);
 
       setTimeout(() => {
         if (tasks.length == 0) {
