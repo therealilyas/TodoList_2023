@@ -7,22 +7,23 @@ let tasksList = document.getElementById("tasksList");
 let tasks = [];
 addBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    addTodo();
+    addTodo(tasks);
     if (e.keyCode == 15)
-        addTodo();
+        addTodo(tasks);
     console.log("Task added!", tasks);
 });
-function addTodo() {
+function addTodo(tasksData) {
     if (input.value == "") {
         return;
     }
     else {
         emptyMessage.style.display = "none";
         let data = {
-            id: tasks.length,
+            id: tasksData.length,
             name: input.value.toUpperCase().trim(),
         };
-        tasks.push(data);
+        console.log("step", tasksData);
+        tasks = [...tasksData, data];
         input.value = "";
         loadTasks(tasks);
     }
@@ -33,7 +34,7 @@ function loadTasks(tasks) {
         const todoLI = document.createElement("li");
         todoLI.className = "task";
         todoLI.id = task.id;
-        todoLI.style.animation = "fadeIn 2s";
+        todoLI.style.animation = "fadeIn 0.3s";
         const todoP = document.createElement("p");
         todoP.className = "task-name";
         todoP.innerText = task.name;
@@ -64,12 +65,15 @@ function loadTasks(tasks) {
         deleteBtn.className = "delete-btn";
         deleteBtn.innerText = "Delete";
         deleteBtn.addEventListener("click", () => {
-            todoLI.style.animation = "fadeOut 2s";
+            todoLI.style.animation = "fadeOut 0.3s";
             tasks = tasks.filter((item) => {
                 if (task.id !== item.id) {
                     return item;
                 }
             });
+            if (tasksList.children == null) {
+                tasks = [];
+            }
             console.log("Task deleted!", tasks);
             setTimeout(() => {
                 if (tasks.length == 0) {
